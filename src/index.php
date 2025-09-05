@@ -14,6 +14,29 @@
 
     <div class="bg-white rounded-lg shadow-lg overflow-hidden">
       <table id="clientesTable" class="w-full">
+
+        <form method="POST" action="php.php" >
+          <label for="nombre">Nombre:</label>
+          <input type="text" name="nombre" required><br><br>
+
+          <label for="apellido">Apellido:</label>
+          <input type="text" name="apellido" required><br><br>
+
+          <label for="dni">DNI:</label>
+          <input type="number" name="dni" required><br><br>
+
+          <label for="fechaNac">Fecha de nacimiento:</label>
+          <input type="date" name="fechaNac" required><br><br>
+
+          <label for="domicilio">Domicilio:</label>
+          <input type="text" name="domicilio" required><br><br>
+
+          <label for="telefono">Telefono:</label>
+          <input type="tel" name="telefono" required><br><br>
+
+          <button type="submit">Guardar</button>
+        </form>
+
         <thead class="bg-white">
           <tr>
             <th class="px-6 py-4 text-left text-xs text-black uppercase tracking-wider">Nombre</th>
@@ -29,5 +52,4 @@
     </div>
   </div>
 </body>
-<script src="js/main.js"></script>
 </html>
