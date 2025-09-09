@@ -7,7 +7,6 @@
   <title>Listado de Clientes</title>
 </head>
 <body class="bg-amber-100/20 font-sans flex h-screen">
-
   <?php
     require_once __DIR__ . '/templates/sidebar.php'; 
   ?>
@@ -84,6 +83,3 @@
       </div>
     </div>
   </main>
-</body>
-  <script src="js/main.js" defer></script>
-</html>
