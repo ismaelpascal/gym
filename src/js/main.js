@@ -1,21 +1,13 @@
-const data = [
-  { nombre: "Juan", apellido: "Pérez", email: "juanperez@mail.com", dni: "12345678", celular: "123456789" },
-  { nombre: "María", apellido: "López", email: "maria.lopez@mail.com", dni: "87654321", celular: "987654321" },
-
-
-  { nombre: "María", apellido: "López", email: "maria.lopez@mail.com", dni: "87654321", celular: "987654321" },
-  { nombre: "María", apellido: "López", email: "maria.lopez@mail.com", dni: "87654321", celular: "987654321" },
-  { nombre: "María", apellido: "López", email: "maria.lopez@mail.com", dni: "87654321", celular: "987654321" },
-  { nombre: "María", apellido: "López", email: "maria.lopez@mail.com", dni: "87654321", celular: "987654321" },
-  { nombre: "María", apellido: "López", email: "maria.lopez@mail.com", dni: "87654321", celular: "987654321" },
-  { nombre: "María", apellido: "López", email: "maria.lopez@mail.com", dni: "87654321", celular: "987654321" },
-  { nombre: "María", apellido: "López", email: "maria.lopez@mail.com", dni: "87654321", celular: "987654321" },
-  { nombre: "María", apellido: "López", email: "maria.lopez@mail.com", dni: "87654321", celular: "987654321" },
-  { nombre: "María", apellido: "López", email: "maria.lopez@mail.com", dni: "87654321", celular: "987654321" },
-  { nombre: "María", apellido: "López", email: "maria.lopez@mail.com", dni: "87654321", celular: "987654321" },
-  { nombre: "María", apellido: "López", email: "maria.lopez@mail.com", dni: "87654321", celular: "987654321" },
-];
-
+fetch('usuarios.json')
+  .then (response => {
+    if (!response.ok) {
+      throw new Error("No se pudo cargar el JSON");
+    }
+    return response.json();
+  })
+  .then(data =>{
+    console.log(data);
+ 
 const tbody = document.querySelector("#clientesTable tbody");
 
 data.forEach((cliente, index) => {
@@ -24,7 +16,7 @@ data.forEach((cliente, index) => {
     <td class="px-6 py-4 text-sm text-gray-700">${cliente.nombre}</td>
     <td class="px-6 py-4 text-sm text-gray-700">${cliente.apellido}</td>
     <td class="px-6 py-4 text-sm text-gray-700">${cliente.dni}</td>
-    <td class="px-6 py-4 text-sm text-gray-700">${cliente.celular}</td>
+    <td class="px-6 py-4 text-sm text-gray-700">${cliente.telefono}</td>
     <td class="px-6 py-4">
     <div class="space-x-2">
         <button class="bg-yellow-400 hover:bg-yellow-700 text-white text-xs py-1 px-3 rounded-md duration-300" onclick="editarCliente(${index})">Editar</button>
@@ -35,3 +27,10 @@ data.forEach((cliente, index) => {
   `;
   tbody.appendChild(row);
 });
+
+
+ })
+   .catch(error => {
+    console.error("Error al cargar el JSON:", error);
+  });
+  
