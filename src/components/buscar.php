@@ -1,7 +1,10 @@
-<div class="mb-4">
+<div class="p-3">
     <input 
         type="text" 
         id="search" 
         placeholder="Buscar cliente por cualquier dato..."
-        class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        class="w-full p-3 rounded-lg border border-gray-300">
 </div>
+<script>
+    
+</script>
