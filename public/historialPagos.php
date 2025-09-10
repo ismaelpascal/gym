@@ -6,7 +6,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Historial de Pagos</title>
 </head>
-<body>
-    
+<body class="bg-amber-100/20 font-sans flex h-screen">
+  
+<?php include '../src/components/sideBar.php'; ?>
+
 </body>
 </html>

@@ -18,9 +18,7 @@
 
       <div class="bg-white rounded-lg shadow-lg overflow-hidden">
         <table id="clientesTable" class="w-full">
-        
-  
-<?php include '../src/components/header.php'; ?>
+
 
           <thead class="bg-white">
             <tr>
@@ -38,4 +36,5 @@
     </div>
   </main>
 </body>
+    <script src="js/main.js"></script>
 </html>
