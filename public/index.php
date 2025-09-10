@@ -7,9 +7,8 @@
   <title>Listado de Clientes</title>
 </head>
 <body class="bg-amber-100/20 font-sans flex h-screen">
-  <?php
-    require_once __DIR__ . '/templates/sidebar.php'; 
-  ?>
+  
+<?php include '../src/components/sideBar.php'; ?>
 
   <main class="flex-grow">
     <div class="p-8">
@@ -59,14 +58,8 @@
             </div>
           </form>
         </div>
-
-        <div class="mb-4">
-        <input 
-          type="text" 
-          id="search" 
-          placeholder="Buscar cliente por cualquier dato..."
-          class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
-        </div>
+  
+<?php include '../src/components/header.php'; ?>
 
           <thead class="bg-white">
             <tr>
@@ -83,3 +76,5 @@
       </div>
     </div>
   </main>
+</body>
+</html>
