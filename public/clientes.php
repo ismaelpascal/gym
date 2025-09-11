@@ -10,11 +10,10 @@
   
 <?php include '../src/components/sideBar.php'; ?>
 
-
   <main class="flex-grow">
     <div class="p-8">
       <div class="flex justify-between items-center mb-8">
-        <h1 class="text-3xl font-bold text-gray-800">Lista de Clientes Habibi</h1>
+        <h1 class="text-3xl font-bold text-gray-800">Lista de Clientes</h1>
       </div>
 
       <div class="bg-white rounded-lg shadow-lg overflow-hidden">

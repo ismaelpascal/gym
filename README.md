@@ -120,7 +120,8 @@ El proyecto sigue una arquitectura limpia y segura. Solo `public/` es accesible 
 │ │ └── ... → 🧱 Otros componentes UI (header, sidebar, etc.)
 │ │
 │ └── 📂 config/
-│   └── 📄 bd.php → ⚙️ Configuración de conexión a la base de datos
+│   ├── 📄 bd.php → ⚙️ Configuración de conexión a la base de datos
+│   └── 📄 bd.sql → 🗃️ Esquema de la base de datos
 │
 ├── 📄 README.md → 📘 Documentación del proyecto
 └── 📄 tailwind.config.js → 🎨 Configuración de Tailwind CSS — ¡NO BORRAR!
