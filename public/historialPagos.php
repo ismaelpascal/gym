@@ -1,106 +1,103 @@
+<?php
+// Conexión a la base de datos
+$host = "localhost";
+$usuario = "root";
+$password = "";
+$base_de_datos = "gym";
+
+$conn = new mysqli($host, $usuario, $password, $base_de_datos);
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+// Consulta para obtener usuarios y sus pagos
+$sql = "
+SELECT u.id, u.nombre, u.apellido, hp.fecha_pago
+FROM usuarios u
+LEFT JOIN historial_pagos hp ON u.id = hp.usuario_id
+ORDER BY u.apellido, u.nombre, hp.fecha_pago DESC
+";
+
+$result = $conn->query($sql);
+
+$usuarios = [];
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $id = $row['id'];
+        if (!isset($usuarios[$id])) {
+            $usuarios[$id] = [
+                'nombre' => $row['nombre'],
+                'apellido' => $row['apellido'],
+                'pagos' => []
+            ];
+        }
+        if ($row['fecha_pago']) {
+            $usuarios[$id]['pagos'][] = $row['fecha_pago'];
+        }
+    }
+}
+$conn->close();
+
+// Construir el array final para JS
+$data = [];
+foreach ($usuarios as $u) {
+    $pagos = $u['pagos'];
+    rsort($pagos);
+
+    $fecha_pago_actual = count($pagos) ? $pagos[0] : null;
+    $historial_pagos = count($pagos) > 1 ? array_slice($pagos, 1) : [];
+
+    $data[] = [
+        'nombre' => $u['nombre'],
+        'apellido' => $u['apellido'],
+        'fecha_pago' => $fecha_pago_actual,
+        'historial_pagos' => $historial_pagos
+    ];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Historial de Pagos</title>
 </head>
 <body class="bg-amber-100/20 font-sans flex h-screen">
-  
+
 <?php include '../src/components/sideBar.php'; ?>
 
 <main class="flex-grow">
     <div class="p-8">
-      <div class="flex justify-between items-center mb-8">
-        <h1 class="text-3xl font-bold text-gray-800">Historial de Pagos</h1>
-      </div>
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">Historial de Pagos</h1>
+        </div>
 
-      <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-        <table id="clientesTable" class="w-full">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <table id="clientesTable" class="w-full">
 
-<?php include '../src/components/buscar.php'; ?>
+                <?php include '../src/components/buscar.php'; ?>
 
-          <thead class="bg-white">
-            <tr>
-              <th class="px-6 py-4 text-left text-xs text-black uppercase">Nombre</th>
-              <th class="px-6 py-4 text-left text-xs text-black uppercase">Apellido</th>
-              <th class="px-6 py-4 text-left text-xs text-black uppercase">Pagado S/N</th>
-              <th class="px-6 py-4 text-left text-xs text-black uppercase">Historial</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-200">
-          </tbody>
-        </table>
-      </div>
+                <thead class="bg-white">
+                    <tr>
+                        <th class="px-6 py-4 text-left text-xs text-black uppercase">Nombre</th>
+                        <th class="px-6 py-4 text-left text-xs text-black uppercase">Apellido</th>
+                        <th class="px-6 py-4 text-left text-xs text-black uppercase">Pagado S/N</th>
+                        <th class="px-6 py-4 text-left text-xs text-black uppercase">Historial</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                </tbody>
+            </table>
+        </div>
     </div>
-  </main>
-</body>
-<script>
-const data = [
-  {
-    nombre: "Carlos",
-    apellido: "Gómez",
-    fecha_pago: "2025-04-05",
-    historial_pagos: ["2025-03-03", "2025-02-01", "2025-01-05", "2024-12-04", "2024-11-02"]
-  },
-  {
-    nombre: "Lucía",
-    apellido: "Martínez",
-    fecha_pago: null,
-    historial_pagos: ["2025-03-10", "2025-02-08", "2025-01-12"]
-  },
-  {
-    nombre: "Javier",
-    apellido: "López",
-    fecha_pago: "2025-04-10",
-    historial_pagos: []
-  },
-  {
-    nombre: "Ana",
-    apellido: "Fernández",
-    fecha_pago: null,
-    historial_pagos: ["2025-03-07", "2025-02-05", "2025-01-09", "2024-12-06", "2024-11-04", "2024-10-02", "2024-09-01"]
-  },
-  {
-    nombre: "Miguel",
-    apellido: "Ruiz",
-    fecha_pago: "2025-04-08",
-    historial_pagos: ["2025-03-06"]
-  },
-  {
-    nombre: "Sofía",
-    apellido: "Díaz",
-    fecha_pago: null,
-    historial_pagos: []
-  },
-  {
-    nombre: "Pedro",
-    apellido: "Sánchez",
-    fecha_pago: "2025-04-02",
-    historial_pagos: ["2025-03-01", "2025-02-03", "2025-01-07", "2024-12-05"]
-  },
-  {
-    nombre: "Laura",
-    apellido: "Torres",
-    fecha_pago: null,
-    historial_pagos: ["2025-03-12", "2025-02-10"]
-  },
-  {
-    nombre: "Diego",
-    apellido: "Ramírez",
-    fecha_pago: "2025-04-09",
-    historial_pagos: ["2025-03-08", "2025-02-06", "2025-01-04", "2024-12-03", "2024-11-07", "2024-10-05"]
-  },
-  {
-    nombre: "Elena",
-    apellido: "Moreno",
-    fecha_pago: null,
-    historial_pagos: ["2025-03-15"]
-  }
-];
+</main>
 
-// Meses del año
+<script>
+const data = <?= json_encode($data, JSON_UNESCAPED_UNICODE) ?>;
+
+// Configuración de meses y fecha actual
 const MESES = [
   { num: 1, nombre: "Enero" },
   { num: 2, nombre: "Febrero" },
@@ -116,9 +113,8 @@ const MESES = [
   { num: 12, nombre: "Diciembre" }
 ];
 
-// Año actual para comparar
 const ANIO_ACTUAL = 2025;
-const MES_ACTUAL = 4; // Abril
+const MES_ACTUAL = 9;
 
 function renderizarClientes() {
   const tbody = document.querySelector("#clientesTable tbody");
@@ -127,31 +123,23 @@ function renderizarClientes() {
   data.forEach(cliente => {
     const row = document.createElement("tr");
 
-    // Extraer todos los meses pagados (del historial + pago actual)
     const fechasPagadas = [...cliente.historial_pagos];
     if (cliente.fecha_pago) fechasPagadas.push(cliente.fecha_pago);
 
-    // Convertir a Set de "MM" (meses pagados en formato 2 dígitos)
     const mesesPagados = new Set(
       fechasPagadas
         .filter(fecha => fecha.startsWith(ANIO_ACTUAL.toString()))
-        .map(fecha => fecha.split('-')[1]) // Extrae "04", "03", etc.
+        .map(fecha => fecha.split('-')[1])
     );
 
-    // Generar opciones del select con colores
     const opcionesMeses = MESES.map(mes => {
-      const mesStr = mes.num.toString().padStart(2, '0'); // "01", "02", ..., "12"
-      let clase = "text-gray-400"; // Por defecto: gris (futuro o no aplicable)
+      const mesStr = mes.num.toString().padStart(2, '0');
+      let clase = "text-gray-400";
 
       if (mes.num < MES_ACTUAL) {
-        // Mes pasado: esperamos que esté pagado
         clase = mesesPagados.has(mesStr) ? "text-green-600 font-semibold" : "text-red-500";
       } else if (mes.num === MES_ACTUAL) {
-        // Mes actual
         clase = cliente.fecha_pago ? "text-green-600 font-semibold" : "text-red-500";
-      } else {
-        // Mes futuro
-        clase = "text-gray-400";
       }
 
       return `<option class="${clase}" value="${mes.num}">${mes.nombre}</option>`;
@@ -174,21 +162,19 @@ function renderizarClientes() {
   });
 }
 
-// Aplicar estilo dinámico a las opciones del select (¡IMPORTANTE!)
 function aplicarEstilosSelects() {
   document.querySelectorAll('#clientesTable select').forEach(select => {
     select.addEventListener('change', function() {
-      const selectedOption = this.options[this.selectedIndex];
       this.className = 'border rounded px-2 py-1 w-full bg-white focus:ring-2 focus:ring-blue-300';
-      // Opcional: puedes hacer algo al seleccionar un mes
     });
   });
 }
 
-// Inicializar cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", () => {
   renderizarClientes();
-  setTimeout(aplicarEstilosSelects, 100); // Pequeño delay para asegurar renderizado
+  setTimeout(aplicarEstilosSelects, 100);
 });
 </script>
+
+</body>
 </html>

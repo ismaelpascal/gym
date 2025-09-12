@@ -10,6 +10,9 @@
         <a href="registrarClientes.php" class="flex items-center py-3 px-2 text-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg mx-2">
             <span>Registrar Clientes</span>
         </a>
+        <a href="registrarPagos.php" class="flex items-center py-3 px-2 text-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg mx-2">
+            <span>Registrar Pagos</span>
+        </a>
         <a href="historialPagos.php" class="flex items-center py-3 px-2 text-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg mx-2">
             <span>Historial de Pagos</span>
         </a>
