@@ -14,7 +14,7 @@
                 Iniciar Sesión
             </h2>
         </div>
-        <form class="space-y-4" method="GET">
+        <form class="space-y-4" action="/public/clientes.php" method="GET">
             <div>
                 <label for="user" class="sr-only">Usuario</label>
                 <input id="user" name="user" type="text" required class="block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-black rounded-md sm:text-sm" placeholder="Usuario">
