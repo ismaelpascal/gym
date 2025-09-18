@@ -6,5 +6,5 @@
         class="w-full p-3 rounded-lg border border-gray-300">
 </div>
 <script>
-    
+
 </script>
