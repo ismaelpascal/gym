@@ -1,62 +1,92 @@
-[
-    {
-        "nombre": "Carlos",
-        "apellido": "García",
-        "dni": "32154879",
-        "telefono": "1123456789"
-    },
-    {
-        "nombre": "Ana",
-        "apellido": "Martínez",
-        "dni": "35879542",
-        "telefono": "1198765432"
-    },
-    {
-        "nombre": "Luis",
-        "apellido": "Rodríguez",
-        "dni": "30456123",
-        "telefono": "1155667788"
-    },
-    {
-        "nombre": "María",
-        "apellido": "Fernández",
-        "dni": "38789456",
-        "telefono": "1133221144"
-    },
-    {
-        "nombre": "Javier",
-        "apellido": "López",
-        "dni": "29888777",
-        "telefono": "1166554433"
-    },
-    {
-        "nombre": "Sofía",
-        "apellido": "Pérez",
-        "dni": "40123789",
-        "telefono": "1122998877"
-    },
-    {
-        "nombre": "Miguel",
-        "apellido": "Gómez",
-        "dni": "34567890",
-        "telefono": "1144775566"
-    },
-    {
-        "nombre": "Lucía",
-        "apellido": "Díaz",
-        "dni": "36987123",
-        "telefono": "1188664422"
-    },
-    {
-        "nombre": "Pedro",
-        "apellido": "Sánchez",
-        "dni": "31234567",
-        "telefono": "1177339911"
-    },
-    {
-        "nombre": "Elena",
-        "apellido": "Torres",
-        "dni": "39876543",
-        "telefono": "1133882277"
-    }
-]
+{
+    "usuarios": [
+        {
+            "dni": "1234",
+            "nombre": "pepe",
+            "apellido": "argento",
+            "fecha_nacimiento": "2025-09-03",
+            "domicilio": "jose ing 54",
+            "telefono": "1234"
+        },
+        {
+            "dni": "1234455",
+            "nombre": "liam",
+            "apellido": "neeson",
+            "fecha_nacimiento": "2025-09-03",
+            "domicilio": "ggggg",
+            "telefono": "03446121354"
+        },
+        {
+            "dni": "23445566",
+            "nombre": "jaime",
+            "apellido": "j",
+            "fecha_nacimiento": "2025-09-21",
+            "domicilio": "calle 1",
+            "telefono": "23456789"
+        },
+        {
+            "dni": "4321",
+            "nombre": "mon",
+            "apellido": "argento",
+            "fecha_nacimiento": "2025-09-12",
+            "domicilio": "calle 13",
+            "telefono": "4321"
+        },
+        {
+            "dni": "567",
+            "nombre": "lola",
+            "apellido": "gutierrez",
+            "fecha_nacimiento": "2025-09-28",
+            "domicilio": "calle 25",
+            "telefono": "567"
+        },
+        {
+            "dni": "9876",
+            "nombre": "ana",
+            "apellido": "perez",
+            "fecha_nacimiento": "2025-09-12",
+            "domicilio": "san pedro 40",
+            "telefono": "9876"
+        }
+    ],
+    "pagos": [
+        {
+            "id_pago": "5",
+            "dni": "1234",
+            "monto": "5000.00",
+            "fecha_pago": "2025-09-10",
+            "metodo_pago": "efectivo"
+        },
+        {
+            "id_pago": "6",
+            "dni": "567",
+            "monto": "3000.00",
+            "fecha_pago": "2025-09-15",
+            "metodo_pago": "tarjeta"
+        },
+        {
+            "id_pago": "7",
+            "dni": "9876",
+            "monto": "4000.00",
+            "fecha_pago": "2025-09-18",
+            "metodo_pago": "efectivo"
+        }
+    ],
+    "usuarios_inactivos": [
+        {
+            "dni": "1234455",
+            "fecha_ultimo_pago": null,
+            "fecha_inactivacion": "2025-09-17"
+        },
+        {
+            "dni": "23445566",
+            "fecha_ultimo_pago": null,
+            "fecha_inactivacion": "2025-09-17"
+        },
+        {
+            "dni": "4321",
+            "fecha_ultimo_pago": null,
+            "fecha_inactivacion": "2025-09-17"
+        }
+    ]
+}
