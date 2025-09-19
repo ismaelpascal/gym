@@ -19,7 +19,7 @@
       <div class="bg-white rounded-lg shadow-lg overflow-hidden">
         <table id="clientesTable" class="w-full">
 
-<?php include '../src/components/buscarClientes.php'; ?>
+<?php include '../src/components/buscarCliente.php'; ?>
 
           <thead class="bg-white">
             <tr>
@@ -37,5 +37,5 @@
     </div>
   </main>
 </body>
-    <script src="js/main.js"></script>
+  <script src="js/main.js?v=<?php echo time(); ?>"></script>
 </html>
