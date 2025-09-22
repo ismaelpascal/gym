@@ -19,7 +19,7 @@
       <div class="bg-white rounded-lg shadow-lg overflow-hidden">
         <table id="clientesTable" class="w-full">
 
-<?php include '../src/components/buscar.php'; ?>
+<?php include '../src/components/buscarHistorial.php'; ?>
 
           <thead class="bg-white">
             <tr>
