@@ -73,8 +73,3 @@
   function verPagos(index) {
     alert("Pagos de: " + clientes[index].nombre);
   }
-
-  })
-  .catch(error => {
-    console.error("Error al cargar o procesar el JSON:", error);
-  });
