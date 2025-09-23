@@ -30,7 +30,22 @@
               <th class="px-6 py-4 text-left text-xs text-black uppercase">Acciones</th>
             </tr>
           </thead>
+
           <tbody class="divide-y divide-gray-200">
+            <tr>
+              <td class="px-6 py-4">Juan</td>
+              <td class="px-6 py-4">Pérez</td>
+              <td class="px-6 py-4">12345678</td>
+              <td class="px-6 py-4">1122334455</td>
+              <td class="px-6 py-4 flex items-center gap-2">
+              <button class="bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-600 text-sm">Editar</button>
+              <button class="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 text-sm">Eliminar</button>
+              <label class="flex items-center gap-1">
+                <input type="checkbox" class="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+                <span class="text-sm text-gray-700">Pago</span>
+              </label>
+            </td>
+            </tr>
           </tbody>
         </table>
       </div>
