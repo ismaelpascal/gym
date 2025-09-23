@@ -71,6 +71,6 @@ function eliminarCliente(index) {
   }
 }
 
-function verPagos(index) {
-  alert("Pagos de: " + clientes[index].nombre);
-}
+  function verPagos(index) {
+    alert("Pagos de: " + clientes[index].nombre);
+  }
