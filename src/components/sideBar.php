@@ -16,7 +16,7 @@
     </nav>
 
     <div class="p-6 border-t border-gray-200">
-        <a href="#" class="flex items-center py-3 px-2 text-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg mx-2">
+        <a href="index.php" class="flex items-center py-3 px-2 text-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg mx-2">
             <span>Salir</span>
         </a>
     </div>
