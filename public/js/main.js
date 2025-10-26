@@ -31,7 +31,7 @@ function mostrarClientes(lista) {
 
   lista.forEach(cliente => {
     const row = document.createElement("tr");
-    row.className = "hover:bg-gray-50 transition-colors duration-150";
+    row.className = "hover:bg-gray-100 transition-colors duration-150";
     
     const pagoRealizado = cliente.pago_mes_actual;
     const checkboxHtml = `
@@ -41,21 +41,21 @@ function mostrarClientes(lista) {
             class="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
             ${pagoRealizado ? 'checked disabled' : ''}
             onchange="registrarPago('${cliente.dni}', this)">
-          <span class="text-sm ${pagoRealizado ? 'text-green-700 font-semibold' : 'text-gray-700'}">
-            ${pagoRealizado ? 'Pagado' : 'Pagar'}
+          <span class="text-base ${pagoRealizado ? 'text-green-700 font-semibold' : 'text-gray-700'}">
+          ${pagoRealizado ? 'Pagado' : 'Pagar'}
           </span>
       </label>
     `;
 
     row.innerHTML = `
-        <td class="px-6 py-4 text-sm text-gray-800 font-medium">${cliente.nombre}</td>
-        <td class="px-6 py-4 text-sm text-gray-600">${cliente.apellido}</td>
-        <td class="px-6 py-4 text-sm text-gray-600">${cliente.dni}</td>
-        <td class="px-6 py-4 text-sm text-gray-600">${cliente.telefono || 'No especificado'}</td>
+        <td class="px-6 py-4 text-base text-gray-800 font-medium">${cliente.nombre}</td>
+        <td class="px-6 py-4 text-base text-gray-600">${cliente.apellido}</td>
+        <td class="px-6 py-4 text-base text-gray-600">${cliente.dni}</td>
+        <td class="px-6 py-4 text-base text-gray-600">${cliente.telefono || 'No especificado'}</td>
         <td class="px-6 py-4">
           <div class="flex items-center space-x-2">
-            <button class="bg-yellow-400 hover:bg-yellow-500 text-white text-xs font-bold py-1 px-3 rounded-md duration-300" onclick="editarCliente('${cliente.dni}')">Editar</button>
-            <button class="bg-red-500 hover:bg-red-600 text-white text-xs font-bold py-1 px-3 rounded-md duration-300" onclick="eliminarCliente('${cliente.dni}')">Eliminar</button>
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white text-xs font-bold py-1 px-3 rounded-md duration-300" onclick="editarCliente('${cliente.dni}')">EDITAR</button>
+            <button class="bg-rose-500 hover:bg-rose-600 text-white text-xs font-bold py-1 px-3 rounded-md duration-300" onclick="eliminarCliente('${cliente.dni}')">ELIMINAR</button>
             ${checkboxHtml}
           </div>
         </td>

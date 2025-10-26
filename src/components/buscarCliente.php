@@ -3,5 +3,5 @@
         type="text" 
         id="search" 
         placeholder="Buscar cliente por nombre, apellido, DNI..."
-        class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
+        class="w-full p-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-700 focus:outline-none">
 </div>
