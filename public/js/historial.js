@@ -41,11 +41,11 @@ function mostrarHistorial(lista) {
         });
 
         const row = document.createElement("tr");
-        row.className = "hover:bg-gray-50 transition-colors duration-200";
+        row.className = "hover:bg-gray-100 transition-colors duration-200";
 
         const estadoMesHtml = pagoDelMes ?
-            `<span class="px-3 py-1 inline-flex text-sm font-semibold rounded-full bg-green-100 text-green-800">Pagado (${formatearFechaSimple(pagoDelMes.fecha)})</span>` :
-            `<span class="px-3 py-1 inline-flex text-sm font-semibold rounded-full bg-red-100 text-red-800">Pendiente</span>`;
+            `<span class="px-3 py-1 inline-flex text-sm font-semibold rounded-full bg-green-200 text-green-800">Pagado (${formatearFechaSimple(pagoDelMes.fecha)})</span>` :
+            `<span class="px-3 py-1 inline-flex text-sm font-semibold rounded-full bg-red-200 text-red-800">Pendiente</span>`;
 
         let historialHtml;
         if (cliente.pagos.length > 0) {
@@ -63,8 +63,8 @@ function mostrarHistorial(lista) {
         }
         
         row.innerHTML = `
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${cliente.nombre}</td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">${cliente.apellido}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900">${cliente.nombre}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-base text-gray-600">${cliente.apellido}</td>
             <td class="px-6 py-4 whitespace-nowrap">${estadoMesHtml}</td>
             <td class="px-6 py-4 whitespace-nowrap">${historialHtml}</td>
         `;

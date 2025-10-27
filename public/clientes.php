@@ -20,7 +20,7 @@
         </h1>
       </div>
 
-      <div class="bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
+      <div class="bg-white rounded-xl shadow-[0_10px_35px_rgba(0,0,0,0.22)] overflow-hidden mt-6 border border-gray-100 hover:shadow-[0_14px_45px_rgba(0,0,0,0.28)] transition-all duration-300">
         <table id="clientesTable" class="w-full">
           <?php include '../src/components/buscarCliente.php'; ?>
           <thead class="bg-rose-500 border-b border-gray-200">
