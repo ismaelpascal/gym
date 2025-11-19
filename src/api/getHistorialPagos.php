@@ -1,5 +1,4 @@
 <?php
-// Ruta: src/api/getHistorialPagos.php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 

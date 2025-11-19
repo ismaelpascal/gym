@@ -1,3 +1,9 @@
+<?php
+session_start();
+session_unset();
+session_destroy();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,22 +19,12 @@
     <div class="max-w-md w-full p-10 bg-white rounded-2xl shadow-xl border border-gray-200">
 
       <div class="flex justify-center mb-4">
-        <img src="/gym/public/logo.png" alt="Logo Empresa" class="h-24 w-auto">
+        <img src="logo.png" alt="Logo Empresa" class="h-24 w-auto">
       </div>
 
       <h2 class="text-center text-2xl font-bold text-gray-900 mb-6">Iniciar Sesión</h2>
 
-      <form class="space-y-4" action="clientes.php" method="GET">
-        <div>
-          <input 
-            id="user" 
-            name="user" 
-            type="text" 
-            required
-            placeholder="Usuario"
-            class="block w-full px-4 py-2.5 border border-gray-300 placeholder-gray-400 text-black rounded-lg sm:text-sm">
-        </div>
-
+      <form class="space-y-4" action="verificarUsuario.php" method="POST">
         <div>
           <input 
             id="password" 

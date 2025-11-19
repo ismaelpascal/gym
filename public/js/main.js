@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
   editForm.addEventListener("submit", guardarCambiosCliente);
 });
 
-
 function cargarClientes() {
   fetch('../src/api/getClientes.php?nocache=' + new Date().getTime())
     .then(response => response.json())
@@ -35,17 +34,18 @@ function mostrarClientes(lista) {
     
     const pagoRealizado = cliente.pago_mes_actual;
     const checkboxHtml = `
-      <label class="flex items-center gap-1 ${pagoRealizado ? 'cursor-not-allowed' : 'cursor-pointer'}">
-          <input 
-            type="checkbox" 
-            class="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
-            ${pagoRealizado ? 'checked disabled' : ''}
-            onchange="registrarPago('${cliente.dni}', this)">
-          <span class="text-base ${pagoRealizado ? 'text-green-700 font-semibold' : 'text-gray-700'}">
-          ${pagoRealizado ? 'Pagado' : 'Pagar'}
-          </span>
-      </label>
-    `;
+    <label class="flex items-center gap-1 ${pagoRealizado ? 'cursor-not-allowed' : 'cursor-pointer'}">
+      <input
+        type="checkbox"
+        class="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+        ${pagoRealizado ? 'checked disabled' : ''}
+        onchange="registrarPago('${cliente.dni}', this)">
+      <span class="text-base ${pagoRealizado ? 'text-green-700 font-semibold' : 'text-gray-700'}">
+        ${pagoRealizado ? 'Pagado' : 'Pagar'}
+      </span>
+      <input type="number" class="monto-input w-20 ml-2 p-1 rounded border" min="0" step="0.01" />
+    </label>
+  `;
 
     row.innerHTML = `
         <td class="px-6 py-4 text-base text-gray-800 font-medium">${cliente.nombre}</td>
@@ -130,25 +130,59 @@ function eliminarCliente(dni) {
 }
 
 function registrarPago(dni, checkboxElement) {
-  if (confirm(`¿Confirmas el pago para el cliente con DNI ${dni} para el mes actual?`)) {
-    fetch('../src/api/registrarPago.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ dni: dni })
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.status === 'success') {
-        checkboxElement.checked = true;
-        checkboxElement.disabled = true;
-        const label = checkboxElement.nextElementSibling;
-        label.textContent = 'Pagado';
-        label.classList.add('text-green-700', 'font-semibold');
-        label.parentElement.classList.add('cursor-not-allowed');
-      }
-    });
-  } else {
+  const label = checkboxElement.closest('label');
+  if (!label) {
+    console.error('No se encontró el label padre del checkbox.');
     checkboxElement.checked = false;
+    return;
   }
-}
 
+  const montoInput = label.querySelector('input[type="number"]');
+  const monto = montoInput ? Number(montoInput.value) : NaN;
+
+  if (isNaN(monto) || monto <= 0) {
+    alert('Por favor ingresa un monto válido mayor a 0 antes de pagar.');
+    checkboxElement.checked = false;
+    return;
+  }
+
+  if (!confirm(`¿Confirmas el pago de $${monto.toFixed(2)} para el cliente con DNI ${dni} para el mes actual?`)) {
+    checkboxElement.checked = false;
+    return;
+  }
+
+  fetch('../src/api/registrarPago.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ dni, monto })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.status === 'success') {
+      checkboxElement.checked = true;
+      checkboxElement.disabled = true;
+
+      const span = label.querySelector('span');
+      if (span) {
+        span.textContent = 'Pagado';
+        span.classList.remove('text-gray-700');
+        span.classList.add('text-green-700', 'font-semibold');
+      }
+
+      if (montoInput) {
+        montoInput.disabled = true;
+      }
+
+      const container = label.parentElement; 
+      if (container) container.classList.add('cursor-not-allowed');
+    } else {
+      alert('Ocurrió un error al registrar el pago: ' + (data.message || 'respuesta inesperada'));
+      checkboxElement.checked = false;
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert('Error de red al intentar registrar el pago.');
+    checkboxElement.checked = false;
+  });
+}

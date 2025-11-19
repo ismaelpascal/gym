@@ -6,16 +6,16 @@ $conn = include __DIR__ . '/../config/database.php';
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-if (empty($data['dni'])) {
+if (empty($data['dni'])|| empty($data['monto'])) {
     header('HTTP/1.1 400 Bad Request');
     echo json_encode(['status' => 'error', 'message' => 'No se proporcionó el DNI del cliente.']);
     exit;
 }
 
 $dni = $data['dni'];
-$monto = 5000.00;
+$monto = $data['monto'];
 $metodo_pago = 'Efectivo';
-$fecha_pago = date('Y-m-d');
+$fecha_pago = date('Y-m-d\Th:m:s\Z');
 
 $sql = "INSERT INTO pagos (dni, monto, fecha_pago, metodo_pago) VALUES (?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);

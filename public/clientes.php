@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['logged_in'])) {
+  http_response_code(400);
+  die('No registrado');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

@@ -50,7 +50,7 @@ function mostrarHistorial(lista) {
         let historialHtml;
         if (cliente.pagos.length > 0) {
             const historialOptions = cliente.pagos
-                .map(pago => `<option value="${pago.fecha}">${formatearFechaLarga(pago.fecha)} - $${pago.monto} (${pago.metodo})</option>`)
+                .map(pago => `<option value="${pago.fecha}">${formatearFechaLarga(pago.fecha)}- $${pago.monto}</option>`)
                 .join('');
             historialHtml = `
                 <select class="block w-full bg-gray-50 border border-gray-300 text-gray-700 py-2 px-3 pr-8 rounded-lg text-sm">
@@ -83,12 +83,12 @@ function filtrarHistorial() {
 }
 
 function formatearFechaSimple(fechaString) {
-    const fecha = new Date(fechaString + "T00:00:00");
+    const fecha = new Date(fechaString);
     return fecha.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit' });
 }
 
 function formatearFechaLarga(fechaString) {
-    const fecha = new Date(fechaString + "T00:00:00");
-    const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
-    return new Intl.DateTimeFormat('es-ES', opciones).format(fecha);
+    const fecha = new Date(fechaString);
+    //const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+    return fecha.toLocaleDateString('es-ES', {});
 }

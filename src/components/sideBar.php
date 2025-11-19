@@ -1,6 +1,6 @@
 <aside class="w-64 h-full bg-gray-200 text-gray-800 flex flex-col flex-shrink-0 border-r border-gray-200">
     <div class="p-6 border-b border-gray-300 flex justify-center">
-        <img src="/gym/public/logo.png" alt="" class="max-h-32 w-auto mx-auto">
+        <img src="logo.png" alt="" class="max-h-32 w-auto mx-auto">
     </div>
 
     <nav class="flex-grow mt-6">
